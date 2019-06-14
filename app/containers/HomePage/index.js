@@ -5,14 +5,31 @@
  *
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 import messages from './messages';
 
-export default function HomePage() {
-  return (
-    <h1>
-      <FormattedMessage {...messages.header} />
-    </h1>
-  );
+// eslint-disable-next-line react/prefer-stateless-function
+class HomePage extends Component {
+  render() {
+    const listOfColors = this.props.colors.map(c => <li>{c}</li>);
+    return (
+      <>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
+        <ul>{listOfColors}</ul>
+      </>
+    );
+  }
 }
+
+function mapStateToProps(state) {
+  console.log('Map State To Props State from HomePage', state);
+  return { colors: state.home.colors };
+}
+
+const withConnect = connect(mapStateToProps);
+
+export default withConnect(HomePage);
