@@ -1,10 +1,22 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 5000;
 
 // Set up body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Set up cors
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   },
+// };
+// app.use(cors(corsOptions));
 
 const colors = ['red', 'blue', 'yellow', 'green'];
 
