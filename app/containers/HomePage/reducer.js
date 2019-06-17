@@ -14,15 +14,17 @@ export const initialState = [];
 
 /* eslint-disable default-case, no-param-reassign */
 export default function homeReducer(state = initialState, action = {}) {
+
   switch (action.type) {
     case GET_COLORS:
+      return [...action.response];
 
     case GET_COLORS_SUCCESS:
-      console.log('Made it to the GET_COLORS_SUCCESS reducer!');
-      return [action.response.colors];
+      return [...action.response];
 
     case GET_COLORS_ERROR:
       return state;
+
     default:
       return state;
   }
