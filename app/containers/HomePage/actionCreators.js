@@ -15,15 +15,17 @@
  *    }
  */
 
-import { GET_COLORS, GET_COLORS_SUCCESS, GET_COLORS_ERROR } from './constants';
+import { GET_COLORS_REQUEST, 
+         GET_COLORS_SUCCESS, 
+         GET_COLORS_ERROR } from './constants';
 
 /**
  * Sends call to API for colors
  *
  * */
-export function getColors() {
+export function getColorsRequest() {
   return {
-    type: GET_COLORS,
+    type: GET_COLORS_REQUEST,
   };
 }
 
