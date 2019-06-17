@@ -1,16 +1,36 @@
-import { call, put } from 'redux-saga/effects';
-import axios from 'axios';
-import { getColorsSuccess, getColorsError } from './actions';
+import { call, put, all, takeEvery } from 'redux-saga/effects';
+import { GET_COLORS_REQUEST, 
+         GET_COLORS_SUCCESS, 
+         GET_COLORS_ERROR } from './constants';
+import { getAllColorsAPI } from './apis';
 
-export default function* colorsSaga() {
+/**
+ * Saga worker that is responsible for getting all 
+ * the list of colors from the backend
+ */
+export function* getColorsSaga(action) {
   try {
-    // trying to call the api
-    const response = yield call(axios.get, 'http://localhost:5000/colors');
-    console.log('THIS IS THE API RESPONSE', response);
-    yield put(getColorsSuccess(response.data));
+    // request to call the api for all the colors
+    const response = yield call(getAllColorsAPI);
+    yield put({
+      type: GET_COLORS_SUCCESS,
+      response,
+    });
   } catch (e) {
     // catch the error
-    console.log('ERROR', e);
-    yield put(getColorsError(e.message));
+    yield put({
+      type: GET_COLORS_ERROR,
+      error,
+    });
   }
+}
+
+export function* watchColorsSaga() {
+  yield takeEvery(GET_COLORS_REQUEST, getColorsSaga)
+}
+
+export function* rootSaga() {
+  yield all([
+    watchColorsSaga(),
+  ])
 }
