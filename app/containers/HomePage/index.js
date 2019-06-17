@@ -8,6 +8,8 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import uuid from 'uuid/v4';
+
 import messages from './messages';
 import { getColorsRequest } from './actionCreators';
 
@@ -24,7 +26,7 @@ class HomePage extends Component {
 
   render() {
     const listOfColors = this.props.colors 
-      ? this.props.colors.map(c => <li>{c}</li>)
+      ? this.props.colors.map(c => <li key={uuid()}>{c}</li>)
       : <li></li>
     return (
       <>
