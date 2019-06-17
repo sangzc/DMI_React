@@ -7,27 +7,20 @@
  *
  */
 
-import { GET_COLORS_REQUEST, 
-         GET_COLORS_SUCCESS, 
-         GET_COLORS_ERROR } from './constants';
+import { GET_COLORS_SUCCESS } from './constants';
+import { ADD_NEW_COLOR_SUCCESS } from '../ColorPage/constants';
 
 // The initial state of the App
 export const initialState = [];
 
 /* eslint-disable default-case, no-param-reassign */
-export default function homeReducer(
-  state = initialState, 
-  action = {}) {
-
+export default function homeReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case GET_COLORS_REQUEST:
-      return state;
-
     case GET_COLORS_SUCCESS:
       return [...action.response];
 
-    case GET_COLORS_ERROR:
-      return state;
+    case ADD_NEW_COLOR_SUCCESS:
+      return [...action.response];
 
     default:
       return state;
