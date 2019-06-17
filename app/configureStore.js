@@ -7,7 +7,7 @@ import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
-import { rootSaga } from './containers/HomePage/sagas';
+import { rootSaga } from './rootSaga';
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
