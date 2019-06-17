@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const FRONTEND_BASE_URL = require('./urls');
-
 const app = express();
 const port = 5000;
 const whiteList = [FRONTEND_BASE_URL]
@@ -38,3 +37,7 @@ app.post('/colors/', (req, res) => {
 });
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
+module.exports = {
+  port,
+}
