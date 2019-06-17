@@ -10,6 +10,3 @@ export async function getAllColorsAPI() {
   return response.data;
 }
 
-// api call to backend to add a new color
-// export function addNewColorAPI() {
-// }
