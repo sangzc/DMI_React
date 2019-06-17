@@ -15,9 +15,8 @@ import { getColorsRequest } from './actionCreators';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class HomePage extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentDidMount() {
@@ -25,9 +24,11 @@ class HomePage extends Component {
   }
 
   render() {
-    const listOfColors = this.props.colors 
-      ? this.props.colors.map(c => <li key={uuid()}>{c}</li>)
-      : <li></li>
+    const listOfColors = this.props.colors ? (
+      this.props.colors.map(c => <li key={uuid()}>{c}</li>)
+    ) : (
+      <li />
+    );
     return (
       <>
         <h1>

@@ -18,7 +18,6 @@ export default function homeReducer(state = initialState, action = {}) {
   switch (action.type) {
     case GET_COLORS_SUCCESS:
       return [...action.response];
-
     case ADD_NEW_COLOR_SUCCESS:
       return [...action.response];
 
