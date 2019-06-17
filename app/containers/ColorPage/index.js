@@ -9,17 +9,15 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
-
 import messages from './messages';
 import { addColorRequest } from './actionCreators';
 
 class ColorPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       color: '',
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -33,7 +31,7 @@ class ColorPage extends Component {
     // send request to backend to add new color
     this.props.addColorRequest(this.state.color);
     // go to homepage
-    this.props.history.push("/");
+    this.props.history.push('/');
   }
 
   render() {
