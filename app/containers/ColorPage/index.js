@@ -7,7 +7,11 @@
 
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+
+
 import messages from './messages';
+import { addColorRequest } from './actionCreators';
 
 class ColorPage extends Component {
 
@@ -17,10 +21,19 @@ class ColorPage extends Component {
       color: '',
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
+  }
+
+  handleSubmit(evt) {
+    evt.preventDefault();
+    // send request to backend to add new color
+    this.props.addColorRequest(this.state.color);
+    // go to homepage
+    this.props.history.push("/");
   }
 
   render() {
@@ -29,7 +42,7 @@ class ColorPage extends Component {
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="color">Color:</label>
           <input
             id="color"
@@ -44,4 +57,17 @@ class ColorPage extends Component {
   }
 }
 
-export default ColorPage;
+function mapStateToProps(state) {
+  return { colors: state.home };
+}
+
+const mapDispatchToProps = {
+  addColorRequest,
+};
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default withConnect(ColorPage);
