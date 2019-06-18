@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import React from 'react';
 
 const ColorItemStyle = styled.li`
   color: ${props => {
-    return props.children
+    return props.children;
   }};
 `;
 

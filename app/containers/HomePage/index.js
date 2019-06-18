@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /*
  * HomePage
  *
@@ -11,14 +12,13 @@ import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 import { createStructuredSelector } from 'reselect';
 
-
 import messages from './messages';
 import { getColorsRequest } from './actionCreators';
-import { 
+import {
   makeSelectAllColors,
   makeSelectInitialLoad,
   makeSelectIsLoading,
- } from './selectors';
+} from './selectors';
 import ColorItem from '../../components/ColorItem/index';
 
 // eslint-disable-next-line react/prefer-stateless-function

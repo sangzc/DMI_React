@@ -16,7 +16,7 @@ import {
 export function addColorRequest(newColor) {
   return {
     type: ADD_NEW_COLOR_REQUEST,
-    newColor
+    newColor,
   };
 }
 
