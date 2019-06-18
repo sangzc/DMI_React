@@ -9,27 +9,36 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
+import { createStructuredSelector } from 'reselect';
+
 
 import messages from './messages';
 import { getColorsRequest } from './actionCreators';
+import { 
+  makeSelectAllColors,
+  makeSelectInitialLoad,
+  makeSelectIsLoading,
+ } from './selectors';
+import ColorItem from '../../components/ColorItem/index';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
-    this.props.getColorsRequest();
+    if (this.props.initialLoad) {
+      this.props.getColorsRequest();
+    }
   }
 
   render() {
     const listOfColors = this.props.colors ? (
-      this.props.colors.map(c => <li key={uuid()}>{c}</li>)
+      this.props.colors.map(c => <ColorItem key={uuid()} inputColor={c} />)
     ) : (
       <li />
     );
-    return (
+
+    const render = this.props.isLoading ? (
+      <h1>Loading...</h1>
+    ) : (
       <>
         <h1>
           <FormattedMessage {...messages.header} />
@@ -37,12 +46,16 @@ class HomePage extends Component {
         <ul>{listOfColors}</ul>
       </>
     );
+
+    return render;
   }
 }
 
-function mapStateToProps(state) {
-  return { colors: state.home };
-}
+const mapStateToProps = createStructuredSelector({
+  colors: makeSelectAllColors(),
+  isLoading: makeSelectIsLoading(),
+  initialLoad: makeSelectInitialLoad(),
+});
 
 const mapDispatchToProps = {
   getColorsRequest,
