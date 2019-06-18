@@ -55,8 +55,8 @@ class ColorPage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { colors: state.home };
+function mapStateToProps() {
+  return {};
 }
 
 const mapDispatchToProps = {
